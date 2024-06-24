@@ -1,5 +1,10 @@
 <?php
     include('connect.php');
+    session_start();
+    if (!isset($_SESSION['username'])) {
+        header('location: login.php');
+        exit();
+    }
     if(isset($_POST['them'])){
         $tensach = htmlspecialchars($_POST['tensach']);
         $tomtat = htmlspecialchars($_POST['tomtat']);

@@ -6,10 +6,10 @@
         exit();
     }
     if(isset($_POST['timkiem'])){
-        $tensach = htmlspecialchars($_POST['tensach']);
-        $sql = "SELECT * FROM sach WHERE tensach LIKE :tensach";
+        $keyword = htmlspecialchars($_POST['keyword']);
+        $sql = "SELECT * FROM sach WHERE tensach LIKE :keyword OR tacgia LIKE :keyword";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([':tensach' => '%' . $tensach . '%']);
+        $stmt->execute([':keyword' => '%' . $keyword . '%']);
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }else{
         $sql = "SELECT * FROM sach";
@@ -41,7 +41,7 @@
             </ul>
             <form action="" method="post">
                 <label for="">Tìm kiếm</label>
-                <input type="text" class="form-control ms-3" style="width: 420px; display: inline-block;" name="tensach">
+                <input type="text" class="form-control ms-3" style="width: 420px; display: inline-block;" name="keyword">
                 <button class="ms-3 btn bg-primary text-white" name="timkiem">Tìm kiếm</button>
                 <a href="add.php" class="btn bg-warning text-white">Thêm</a>
             </form>

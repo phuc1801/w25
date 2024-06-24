@@ -1,5 +1,10 @@
 <?php
     include('connect.php');
+    session_start();
+    if (!isset($_SESSION['username'])) {
+        header('location: login.php');
+        exit();
+    }
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         $sqlID = "SELECT * FROM sach WHERE id = :id";
