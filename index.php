@@ -75,6 +75,8 @@
             </table>
         </div>
     </content>
-    <footer class="text-center text-primary mt-3">Nguyen Duy Phuc</footer>
+    <footer class="text-center text-primary mt-3">Nguyen Duy Phuc 
+        <?php echo $_SESSION['username']?>
+    </footer>
 </body>
 </html>
