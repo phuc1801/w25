@@ -7,9 +7,9 @@
     }
     if(isset($_POST['timkiem'])){
         $tensach = htmlspecialchars($_POST['tensach']);
-        $sql = "SELECT * FROM sach WHERE tensach = :tensach";
+        $sql = "SELECT * FROM sach WHERE tensach LIKE :tensach";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([':tensach' => $tensach]);
+        $stmt->execute([':tensach' => '%' . $tensach . '%']);
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }else{
         $sql = "SELECT * FROM sach";
