@@ -13,14 +13,16 @@
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
     }
     if(isset($_POST['them'])){
+        $id = htmlspecialchars($_GET['id']);
         $tensach = htmlspecialchars($_POST['tensach']);
         $tomtat = htmlspecialchars($_POST['tomtat']);
         $tacgia = htmlspecialchars($_POST['tacgia']);
         $namxb = htmlspecialchars($_POST['namxb']);
         $loaisach = htmlspecialchars($_POST['loaisach']);
-        $sql = "INSERT sach(tensach, tomtat, tacgia, namxb, loaisach) VALUES(:tensach, :tomtat, :tacgia, :namxb, :loaisach)";
+        $sql = "UPDATE sach SET tensach = :tensach, tomtat = :tomtat, tacgia = :tacgia, namxb = :namxb, loaisach = :loaisach WHERE id = :id";
         $stmt = $conn->prepare($sql);
         $parans = [
+            ':id' => $id,
             ':tensach' => $tensach,
             ':tomtat' => $tomtat,
             ':tacgia' => $tacgia,
